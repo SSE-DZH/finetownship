@@ -1,0 +1,46 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/finetownship?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai
+    username: root
+    password: root
+
+logging:
+  level:
+    com.zhiend.finetownship: info
+  pattern:
+    dateformat: HH:mm:ss
+
+mybatis-plus:
+  type-aliases-package: com.zhiend.finetownship.entity
+  mapper-locations: "classpath*:/mapper/**/*.xml"
+  configuration:
+    default-enum-type-handler: com.baomidou.mybatisplus.core.handlers.MybatisEnumTypeHandler
+    map-underscore-to-camel-case: true
+    cache-enabled: false
+  global-config:
+    db-config:
+      id-type: auto
+      update-strategy: not_null
+      logic-delete-field: deleted
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+
+server:
+  port: 10086
+
+knife4j:
+  enable: true
+  openapi:
+    title: 好乡镇接口文档
+    description: "好乡镇接口文档"
+    email: sse_d@qq.com
+    concat: zhiend
+    url: http://localhost:10086/doc.html
+    version: v6.1.8
+    group:
+      default:
+        group-name: default
+        api-rule: package
+        api-rule-resources:
+          - com.zhiend.finetownship.controller
