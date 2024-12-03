@@ -5,9 +5,6 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import java.time.LocalDateTime;
 import java.io.Serializable;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.experimental.Accessors;
 
 /**
  * <p>
@@ -17,9 +14,6 @@ import lombok.experimental.Accessors;
  * @author Zhiend
  * @since 2024-12-03
  */
-@Data
-@EqualsAndHashCode(callSuper = false)
-@Accessors(chain = true)
 @TableName("town_advocacy_info")
 public class TownAdvocacyInfo implements Serializable {
 
@@ -76,5 +70,90 @@ public class TownAdvocacyInfo implements Serializable {
      */
     private LocalDateTime pupdateDate;
 
+    public Integer getPid() {
+        return pid;
+    }
 
+    public void setPid(Integer pid) {
+        this.pid = pid;
+    }
+    public String getPtitle() {
+        return ptitle;
+    }
+
+    public void setPtitle(String ptitle) {
+        this.ptitle = ptitle;
+    }
+    public Integer getPtypeId() {
+        return ptypeId;
+    }
+
+    public void setPtypeId(Integer ptypeId) {
+        this.ptypeId = ptypeId;
+    }
+    public Integer getPuserId() {
+        return puserId;
+    }
+
+    public void setPuserId(Integer puserId) {
+        this.puserId = puserId;
+    }
+    public Integer getTownId() {
+        return townId;
+    }
+
+    public void setTownId(Integer townId) {
+        this.townId = townId;
+    }
+    public String getPdesc() {
+        return pdesc;
+    }
+
+    public void setPdesc(String pdesc) {
+        this.pdesc = pdesc;
+    }
+    public String getPfileList() {
+        return pfileList;
+    }
+
+    public void setPfileList(String pfileList) {
+        this.pfileList = pfileList;
+    }
+    public LocalDateTime getPbeginDate() {
+        return pbeginDate;
+    }
+
+    public void setPbeginDate(LocalDateTime pbeginDate) {
+        this.pbeginDate = pbeginDate;
+    }
+    public Integer getPstate() {
+        return pstate;
+    }
+
+    public void setPstate(Integer pstate) {
+        this.pstate = pstate;
+    }
+    public LocalDateTime getPupdateDate() {
+        return pupdateDate;
+    }
+
+    public void setPupdateDate(LocalDateTime pupdateDate) {
+        this.pupdateDate = pupdateDate;
+    }
+
+    @Override
+    public String toString() {
+        return "TownAdvocacyInfo{" +
+            "pid=" + pid +
+            ", ptitle=" + ptitle +
+            ", ptypeId=" + ptypeId +
+            ", puserId=" + puserId +
+            ", townId=" + townId +
+            ", pdesc=" + pdesc +
+            ", pfileList=" + pfileList +
+            ", pbeginDate=" + pbeginDate +
+            ", pstate=" + pstate +
+            ", pupdateDate=" + pupdateDate +
+        "}";
+    }
 }

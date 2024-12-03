@@ -5,9 +5,6 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import java.time.LocalDateTime;
 import java.io.Serializable;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.experimental.Accessors;
 
 /**
  * <p>
@@ -17,9 +14,6 @@ import lombok.experimental.Accessors;
  * @author Zhiend
  * @since 2024-12-03
  */
-@Data
-@EqualsAndHashCode(callSuper = false)
-@Accessors(chain = true)
 @TableName("town_support")
 public class TownSupport implements Serializable {
 
@@ -71,5 +65,82 @@ public class TownSupport implements Serializable {
      */
     private String sfileList;
 
+    public Integer getSid() {
+        return sid;
+    }
 
+    public void setSid(Integer sid) {
+        this.sid = sid;
+    }
+    public Integer getSuserId() {
+        return suserId;
+    }
+
+    public void setSuserId(Integer suserId) {
+        this.suserId = suserId;
+    }
+    public Integer getPid() {
+        return pid;
+    }
+
+    public void setPid(Integer pid) {
+        this.pid = pid;
+    }
+    public String getStitle() {
+        return stitle;
+    }
+
+    public void setStitle(String stitle) {
+        this.stitle = stitle;
+    }
+    public String getSdesc() {
+        return sdesc;
+    }
+
+    public void setSdesc(String sdesc) {
+        this.sdesc = sdesc;
+    }
+    public LocalDateTime getSupportDate() {
+        return supportDate;
+    }
+
+    public void setSupportDate(LocalDateTime supportDate) {
+        this.supportDate = supportDate;
+    }
+    public Boolean getSupportState() {
+        return supportState;
+    }
+
+    public void setSupportState(Boolean supportState) {
+        this.supportState = supportState;
+    }
+    public LocalDateTime getUpdateDate() {
+        return updateDate;
+    }
+
+    public void setUpdateDate(LocalDateTime updateDate) {
+        this.updateDate = updateDate;
+    }
+    public String getSfileList() {
+        return sfileList;
+    }
+
+    public void setSfileList(String sfileList) {
+        this.sfileList = sfileList;
+    }
+
+    @Override
+    public String toString() {
+        return "TownSupport{" +
+            "sid=" + sid +
+            ", suserId=" + suserId +
+            ", pid=" + pid +
+            ", stitle=" + stitle +
+            ", sdesc=" + sdesc +
+            ", supportDate=" + supportDate +
+            ", supportState=" + supportState +
+            ", updateDate=" + updateDate +
+            ", sfileList=" + sfileList +
+        "}";
+    }
 }

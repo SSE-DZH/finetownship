@@ -23,9 +23,9 @@ public class MessageConstant {
     // 操作失败
     public static final String OPERATION_FAILED = "操作失败";
     //银行账户已存在
-    public static final String BANK_ACCOUNT_EXISTS = "银行账户已存在";
+    public static final String ACCOUNT_EXISTS = "账户已存在，请更换证件号";
     //银行账户不存在
-    public static final String BANK_ACCOUNT_NOT_FOUND = "银行账户不存在";
+    public static final String ACCOUNT_NOT_FOUND = "账户不存在";
 
     // 交易所
     public static final String EXCHANGE = "交易所";

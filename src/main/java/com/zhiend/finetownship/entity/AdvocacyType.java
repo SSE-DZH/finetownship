@@ -4,9 +4,6 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import java.io.Serializable;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.experimental.Accessors;
 
 /**
  * <p>
@@ -16,9 +13,6 @@ import lombok.experimental.Accessors;
  * @author Zhiend
  * @since 2024-12-03
  */
-@Data
-@EqualsAndHashCode(callSuper = false)
-@Accessors(chain = true)
 @TableName("advocacy_type")
 public class AdvocacyType implements Serializable {
 
@@ -35,5 +29,26 @@ public class AdvocacyType implements Serializable {
      */
     private String typeName;
 
+    public Integer getId() {
+        return id;
+    }
 
+    public void setId(Integer id) {
+        this.id = id;
+    }
+    public String getTypeName() {
+        return typeName;
+    }
+
+    public void setTypeName(String typeName) {
+        this.typeName = typeName;
+    }
+
+    @Override
+    public String toString() {
+        return "AdvocacyType{" +
+            "id=" + id +
+            ", typeName=" + typeName +
+        "}";
+    }
 }

@@ -30,6 +30,13 @@ public class Result<T> implements Serializable {
         result.success = true;
         return result;
     }
+    public static <T> Result<T> success(String msg) {
+        Result<T> result = new Result<T>();
+        result.code = 200;
+        result.success = true;
+        result.msg = msg;
+        return result;
+    }
 
     public static <T> Result<T> success(T object, String msg) {
         Result<T> result = new Result<T>();
@@ -43,7 +50,7 @@ public class Result<T> implements Serializable {
     public static <T> Result<T> error(String msg) {
         Result result = new Result();
         result.msg = msg;
-        result.code = 0;
+        result.code = -1;
         return result;
     }
 

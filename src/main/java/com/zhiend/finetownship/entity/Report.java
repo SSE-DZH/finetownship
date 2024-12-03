@@ -4,9 +4,6 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import java.io.Serializable;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.experimental.Accessors;
 
 /**
  * <p>
@@ -16,9 +13,6 @@ import lombok.experimental.Accessors;
  * @author Zhiend
  * @since 2024-12-03
  */
-@Data
-@EqualsAndHashCode(callSuper = false)
-@Accessors(chain = true)
 @TableName("report")
 public class Report implements Serializable {
 
@@ -55,5 +49,58 @@ public class Report implements Serializable {
      */
     private Integer suserNum;
 
+    public Integer getId() {
+        return id;
+    }
 
+    public void setId(Integer id) {
+        this.id = id;
+    }
+    public String getMonthId() {
+        return monthId;
+    }
+
+    public void setMonthId(String monthId) {
+        this.monthId = monthId;
+    }
+    public Integer getPtypeId() {
+        return ptypeId;
+    }
+
+    public void setPtypeId(Integer ptypeId) {
+        this.ptypeId = ptypeId;
+    }
+    public String getTownId() {
+        return townId;
+    }
+
+    public void setTownId(String townId) {
+        this.townId = townId;
+    }
+    public Integer getPuserNum() {
+        return puserNum;
+    }
+
+    public void setPuserNum(Integer puserNum) {
+        this.puserNum = puserNum;
+    }
+    public Integer getSuserNum() {
+        return suserNum;
+    }
+
+    public void setSuserNum(Integer suserNum) {
+        this.suserNum = suserNum;
+    }
+
+    @Override
+    public String toString() {
+        return "Report{" +
+            "id=" + id +
+            ", monthId=" + monthId +
+            ", ptypeId=" + ptypeId +
+            ", townId=" + townId +
+            ", puserNum=" + puserNum +
+            ", suserNum=" + suserNum +
+        "}";
+    }
 }

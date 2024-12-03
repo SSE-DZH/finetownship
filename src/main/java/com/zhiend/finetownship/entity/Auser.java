@@ -4,9 +4,6 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import java.io.Serializable;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.experimental.Accessors;
 
 /**
  * <p>
@@ -16,9 +13,6 @@ import lombok.experimental.Accessors;
  * @author Zhiend
  * @since 2024-12-03
  */
-@Data
-@EqualsAndHashCode(callSuper = false)
-@Accessors(chain = true)
 @TableName("auser")
 public class Auser implements Serializable {
 
@@ -35,5 +29,26 @@ public class Auser implements Serializable {
      */
     private String apwd;
 
+    public String getAname() {
+        return aname;
+    }
 
+    public void setAname(String aname) {
+        this.aname = aname;
+    }
+    public String getApwd() {
+        return apwd;
+    }
+
+    public void setApwd(String apwd) {
+        this.apwd = apwd;
+    }
+
+    @Override
+    public String toString() {
+        return "Auser{" +
+            "aname=" + aname +
+            ", apwd=" + apwd +
+        "}";
+    }
 }

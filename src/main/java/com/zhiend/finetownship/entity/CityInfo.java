@@ -4,9 +4,6 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import java.io.Serializable;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.experimental.Accessors;
 
 /**
  * <p>
@@ -16,9 +13,6 @@ import lombok.experimental.Accessors;
  * @author Zhiend
  * @since 2024-12-03
  */
-@Data
-@EqualsAndHashCode(callSuper = false)
-@Accessors(chain = true)
 @TableName("city_info")
 public class CityInfo implements Serializable {
 
@@ -45,5 +39,42 @@ public class CityInfo implements Serializable {
      */
     private String provinceName;
 
+    public Integer getCityId() {
+        return cityId;
+    }
 
+    public void setCityId(Integer cityId) {
+        this.cityId = cityId;
+    }
+    public String getCityName() {
+        return cityName;
+    }
+
+    public void setCityName(String cityName) {
+        this.cityName = cityName;
+    }
+    public Integer getProvinceId() {
+        return provinceId;
+    }
+
+    public void setProvinceId(Integer provinceId) {
+        this.provinceId = provinceId;
+    }
+    public String getProvinceName() {
+        return provinceName;
+    }
+
+    public void setProvinceName(String provinceName) {
+        this.provinceName = provinceName;
+    }
+
+    @Override
+    public String toString() {
+        return "CityInfo{" +
+            "cityId=" + cityId +
+            ", cityName=" + cityName +
+            ", provinceId=" + provinceId +
+            ", provinceName=" + provinceName +
+        "}";
+    }
 }

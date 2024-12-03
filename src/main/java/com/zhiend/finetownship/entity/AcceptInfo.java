@@ -5,9 +5,6 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import java.time.LocalDateTime;
 import java.io.Serializable;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.experimental.Accessors;
 
 /**
  * <p>
@@ -17,9 +14,6 @@ import lombok.experimental.Accessors;
  * @author Zhiend
  * @since 2024-12-03
  */
-@Data
-@EqualsAndHashCode(callSuper = false)
-@Accessors(chain = true)
 @TableName("accept_info")
 public class AcceptInfo implements Serializable {
 
@@ -42,7 +36,7 @@ public class AcceptInfo implements Serializable {
     private Integer sid;
 
     /**
-     * 达成日期
+     * 创建时间
      */
     private LocalDateTime createDate;
 
@@ -51,5 +45,50 @@ public class AcceptInfo implements Serializable {
      */
     private String remark;
 
+    public Integer getId() {
+        return id;
+    }
 
+    public void setId(Integer id) {
+        this.id = id;
+    }
+    public Integer getPid() {
+        return pid;
+    }
+
+    public void setPid(Integer pid) {
+        this.pid = pid;
+    }
+    public Integer getSid() {
+        return sid;
+    }
+
+    public void setSid(Integer sid) {
+        this.sid = sid;
+    }
+    public LocalDateTime getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(LocalDateTime createDate) {
+        this.createDate = createDate;
+    }
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }
+
+    @Override
+    public String toString() {
+        return "AcceptInfo{" +
+            "id=" + id +
+            ", pid=" + pid +
+            ", sid=" + sid +
+            ", createDate=" + createDate +
+            ", remark=" + remark +
+        "}";
+    }
 }

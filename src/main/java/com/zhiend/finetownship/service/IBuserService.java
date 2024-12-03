@@ -1,7 +1,10 @@
 package com.zhiend.finetownship.service;
 
+import com.zhiend.finetownship.dto.BuserRegisterDto;
+import com.zhiend.finetownship.dto.BuserUpdateDto;
 import com.zhiend.finetownship.entity.Buser;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.zhiend.finetownship.vo.BuserVo;
 
 /**
  * <p>
@@ -12,5 +15,9 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @since 2024-12-03
  */
 public interface IBuserService extends IService<Buser> {
+    void register(BuserRegisterDto registerDto);
 
+    BuserVo view(Integer id);
+
+    void updateUser(BuserUpdateDto updateDto);
 }
