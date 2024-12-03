@@ -4,6 +4,7 @@ package com.zhiend.finetownship.controller;
 import com.zhiend.finetownship.constant.MessageConstant;
 import com.zhiend.finetownship.dto.BuserRegisterDto;
 import com.zhiend.finetownship.dto.BuserUpdateDto;
+import com.zhiend.finetownship.dto.LoginDto;
 import com.zhiend.finetownship.result.Result;
 import com.zhiend.finetownship.service.IBuserService;
 import com.zhiend.finetownship.vo.BuserVo;
@@ -46,6 +47,19 @@ public class BuserController {
     @ApiOperation("用户信息更新")
     public Result<String> update(@RequestBody BuserUpdateDto updateDto) {
         buserService.updateUser(updateDto);
+        return Result.success(MessageConstant.OPERATION_SUCCESS);
+    }
+
+    @ApiOperation("账户登录")
+    @PostMapping("/login")
+    public Result<BuserVo> login(@RequestBody LoginDto loginDto) {
+        BuserVo buserVo = buserService.login(loginDto);
+        return Result.success(buserVo);
+    }
+
+    @ApiOperation("账户退出")
+    @PostMapping("/logout")
+    public Result<String> logout() {
         return Result.success(MessageConstant.OPERATION_SUCCESS);
     }
 }

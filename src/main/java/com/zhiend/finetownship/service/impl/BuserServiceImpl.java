@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.zhiend.finetownship.constant.MessageConstant;
 import com.zhiend.finetownship.dto.BuserRegisterDto;
 import com.zhiend.finetownship.dto.BuserUpdateDto;
+import com.zhiend.finetownship.dto.LoginDto;
 import com.zhiend.finetownship.entity.Buser;
 import com.zhiend.finetownship.exception.GloabalException;
 import com.zhiend.finetownship.mapper.BuserMapper;
@@ -33,7 +34,7 @@ public class BuserServiceImpl extends ServiceImpl<BuserMapper, Buser> implements
     public void register(BuserRegisterDto registerDto) {
         // 检验用户的证件号是否已经注册,不是主键
         QueryWrapper<Buser> queryWrapper = Wrappers.query();
-        queryWrapper.eq("idno", registerDto.getIdno());
+        queryWrapper.eq("uname", registerDto.getUname());
         Buser buser1 = buserMapper.selectOne(queryWrapper);
         if (buser1 != null) {
             throw new GloabalException(MessageConstant.ACCOUNT_EXISTS);
@@ -62,5 +63,18 @@ public class BuserServiceImpl extends ServiceImpl<BuserMapper, Buser> implements
         Buser buser = buserMapper.selectById(updateDto.getId());
         BeanUtil.copyProperties(updateDto, buser);
         buserMapper.updateById(buser);
+    }
+
+    @Override
+    public BuserVo login(LoginDto loginDto) {
+        // 通过用户名查询用户信息
+        Buser buser = buserMapper.selectOne(Wrappers.<Buser>lambdaQuery().eq(Buser::getUname, loginDto.getUname()));
+        if (buser == null) {
+            throw new GloabalException(MessageConstant.ACCOUNT_NOT_FOUND);
+        }
+        if (!buser.getBpwd().equals(loginDto.getBpwd())) {
+            throw new GloabalException(MessageConstant.USERNAME_OR_PASSWORD_ERROR);
+        }
+        return BeanUtil.copyProperties(buser, BuserVo.class);
     }
 }

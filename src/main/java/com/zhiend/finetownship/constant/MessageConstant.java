@@ -23,7 +23,7 @@ public class MessageConstant {
     // 操作失败
     public static final String OPERATION_FAILED = "操作失败";
     //银行账户已存在
-    public static final String ACCOUNT_EXISTS = "账户已存在，请更换证件号";
+    public static final String ACCOUNT_EXISTS = "账户已存在，请更换用户名";
     //银行账户不存在
     public static final String ACCOUNT_NOT_FOUND = "账户不存在";
 

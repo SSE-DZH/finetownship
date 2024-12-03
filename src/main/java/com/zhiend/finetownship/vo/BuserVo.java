@@ -17,6 +17,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class BuserVo {
     /**
+     * 用户标识
+     */
+    @ApiModelProperty("用户标识")
+    private Integer id;
+    /**
      * 用户注册名称
      */
     @ApiModelProperty("用户注册名称")
