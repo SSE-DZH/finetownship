@@ -10,12 +10,14 @@ import com.zhiend.finetownship.result.Result;
 import com.zhiend.finetownship.service.ITownAdvocacyInfoService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.io.IOException;
 
 /**
  * <p>
@@ -28,6 +30,7 @@ import javax.annotation.Resource;
 @RestController
 @RequestMapping("/town-advocacy-info")
 @Api(tags = "宣传信息界面")
+@Slf4j
 public class TownAdvocacyInfoController {
     @Resource
     private ITownAdvocacyInfoService townAdvocacyInfoService;
@@ -41,7 +44,14 @@ public class TownAdvocacyInfoController {
     @PostMapping("/add")
     @ApiOperation("宣传信息添加")
     public Result<String> add(TownAdvocacyInfoDto townAdvocacyInfoDto) {
-        townAdvocacyInfoService.add(townAdvocacyInfoDto);
-        return Result.success(MessageConstant.OPERATION_SUCCESS);
+        // 打印Dto
+        log.info("添加宣传信息：{}", townAdvocacyInfoDto);
+        try {
+            townAdvocacyInfoService.add(townAdvocacyInfoDto);
+            return Result.success(MessageConstant.OPERATION_SUCCESS);
+        } catch (IOException e) {
+            return Result.error(MessageConstant.OPERATION_FAILED);
+        }
+
     }
 }

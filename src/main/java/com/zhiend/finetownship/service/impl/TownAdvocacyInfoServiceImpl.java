@@ -1,16 +1,20 @@
 package com.zhiend.finetownship.service.impl;
 
+import cn.hutool.core.bean.BeanUtil;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.zhiend.finetownship.dto.TownAdvocacyInfoDto;
 import com.zhiend.finetownship.entity.TownAdvocacyInfo;
 import com.zhiend.finetownship.mapper.TownAdvocacyInfoMapper;
 import com.zhiend.finetownship.query.PageResult;
 import com.zhiend.finetownship.query.TownAdvocacyInfoQuery;
 import com.zhiend.finetownship.service.ITownAdvocacyInfoService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.zhiend.finetownship.utils.FileUploadUtil;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.io.IOException;
 
 /**
  * <p>
@@ -41,4 +45,15 @@ public class TownAdvocacyInfoServiceImpl extends ServiceImpl<TownAdvocacyInfoMap
 
         return pageResult;
     }
+
+    @Override
+    public void add(TownAdvocacyInfoDto townAdvocacyInfoDto) throws IOException {
+        String pfileList = FileUploadUtil.uploadFile(townAdvocacyInfoDto.getFiles());
+        TownAdvocacyInfo townAdvocacyInfo = new TownAdvocacyInfo();
+        BeanUtil.copyProperties(townAdvocacyInfoDto, townAdvocacyInfo);
+        townAdvocacyInfo.setPstate(0);
+        townAdvocacyInfo.setPfileList(pfileList);
+        townAdvocacyInfoMapper.insert(townAdvocacyInfo);
+    }
+
 }

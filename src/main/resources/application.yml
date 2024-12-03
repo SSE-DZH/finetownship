@@ -1,10 +1,11 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/finetownship?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai
+#    url: jdbc:mysql://localhost:3306/finetownship?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai
+    url: jdbc:mysql://8.140.22.230:3306/finetownship?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
     username: root
-    password: root
-
+#    password: root
+    password: C20021123/yh
 logging:
   level:
     com.zhiend.finetownship: info

@@ -3,6 +3,8 @@ package com.zhiend.finetownship.dto;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+import lombok.ToString;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  * @author Zhiend
@@ -12,6 +14,7 @@ import lombok.Data;
  */
 @Data
 @ApiModel("好乡镇宣传信息传输对象")
+@ToString
 public class TownAdvocacyInfoDto {
     /**
      * 好乡镇宣传标题
@@ -39,8 +42,8 @@ public class TownAdvocacyInfoDto {
     @ApiModelProperty("宣传描述")
     private String pdesc;
     /**
-     * 上传的图片等资源文件名称列表
+     * 好乡镇宣传图片
      */
-    @ApiModelProperty("上传的图片等资源文件名称列表")
-    private String pfileList;
+    @ApiModelProperty("上传的文件")
+    private MultipartFile[] files;
 }

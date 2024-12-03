@@ -11,7 +11,7 @@
  Target Server Version : 80036 (8.0.36)
  File Encoding         : 65001
 
- Date: 03/12/2024 17:08:39
+ Date: 03/12/2024 20:22:20
 */
 
 SET NAMES utf8mb4;
@@ -147,7 +147,7 @@ CREATE TABLE `town_advocacy_info`  (
   PRIMARY KEY (`pid`) USING BTREE,
   INDEX `f1`(`puser_name` ASC) USING BTREE,
   INDEX `f2`(`type` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '好乡镇宣传信息表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 16 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '好乡镇宣传信息表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of town_advocacy_info
