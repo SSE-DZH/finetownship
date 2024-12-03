@@ -36,9 +36,9 @@ public class TownAdvocacyInfo implements Serializable {
     private String type;
 
     /**
-     * 发布该好乡镇宣传的用户id
+     * 发布该好乡镇宣传的用户名
      */
-    private Integer puserId;
+    private String puserName;
 
     /**
      * 被宣传的好乡镇名称
@@ -91,12 +91,12 @@ public class TownAdvocacyInfo implements Serializable {
     public void setType(String type) {
         this.type = type;
     }
-    public Integer getPuserId() {
-        return puserId;
+    public String getPuserName() {
+        return puserName;
     }
 
-    public void setPuserId(Integer puserId) {
-        this.puserId = puserId;
+    public void setPuserName(String puserName) {
+        this.puserName = puserName;
     }
     public String getTownName() {
         return townName;
@@ -147,7 +147,7 @@ public class TownAdvocacyInfo implements Serializable {
             "pid=" + pid +
             ", ptitle=" + ptitle +
             ", type=" + type +
-            ", puserId=" + puserId +
+            ", puserName=" + puserName +
             ", townName=" + townName +
             ", pdesc=" + pdesc +
             ", pfileList=" + pfileList +

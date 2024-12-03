@@ -26,9 +26,9 @@ public class TownSupport implements Serializable {
     private Integer sid;
 
     /**
-     * 助力用户id
+     * 助力用户名
      */
-    private Integer suserId;
+    private String suserName;
 
     /**
      * 对应的好乡镇宣传id
@@ -72,12 +72,12 @@ public class TownSupport implements Serializable {
     public void setSid(Integer sid) {
         this.sid = sid;
     }
-    public Integer getSuserId() {
-        return suserId;
+    public String getSuserName() {
+        return suserName;
     }
 
-    public void setSuserId(Integer suserId) {
-        this.suserId = suserId;
+    public void setSuserName(String suserName) {
+        this.suserName = suserName;
     }
     public Integer getPid() {
         return pid;
@@ -133,7 +133,7 @@ public class TownSupport implements Serializable {
     public String toString() {
         return "TownSupport{" +
             "sid=" + sid +
-            ", suserId=" + suserId +
+            ", suserName=" + suserName +
             ", pid=" + pid +
             ", stitle=" + stitle +
             ", sdesc=" + sdesc +
