@@ -11,7 +11,7 @@
  Target Server Version : 80036 (8.0.36)
  File Encoding         : 65001
 
- Date: 03/12/2024 16:41:07
+ Date: 03/12/2024 17:08:39
 */
 
 SET NAMES utf8mb4;
@@ -137,7 +137,7 @@ CREATE TABLE `town_advocacy_info`  (
   `pid` int NOT NULL AUTO_INCREMENT COMMENT '好乡镇宣传id',
   `ptitle` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '好乡镇宣传标题',
   `type` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '好乡镇宣传类型',
-  `puser_id` int NULL DEFAULT NULL COMMENT '发布该好乡镇宣传的用户id',
+  `puser_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '发布该好乡镇宣传的用户名',
   `town_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '被宣传的好乡镇名称',
   `pdesc` varchar(300) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '好乡镇宣传描述',
   `pfile_list` varchar(300) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '上传的图片等资源文件名称列表',
@@ -145,19 +145,23 @@ CREATE TABLE `town_advocacy_info`  (
   `pstate` int NULL DEFAULT NULL COMMENT '状态，0：已发布；-1：已取消',
   `pupdate_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '修改日期',
   PRIMARY KEY (`pid`) USING BTREE,
-  INDEX `f1`(`puser_id` ASC) USING BTREE,
+  INDEX `f1`(`puser_name` ASC) USING BTREE,
   INDEX `f2`(`type` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '好乡镇宣传信息表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '好乡镇宣传信息表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of town_advocacy_info
 -- ----------------------------
-INSERT INTO `town_advocacy_info` VALUES (1, '乡村美食节', '特色小吃', 1, '美食村', '品尝乡村特色小吃，享受传统美食文化。', 'food1.jpg,food2.jpg', '2024-12-03 16:36:42', 0, '2024-12-03 16:36:42');
-INSERT INTO `town_advocacy_info` VALUES (2, '古韵之旅', '古建筑', 2, '古韵镇', '探索古镇历史，体验古建筑的魅力。', 'building1.jpg,building2.jpg', '2024-12-03 16:36:42', 0, '2024-12-03 16:36:42');
-INSERT INTO `town_advocacy_info` VALUES (3, '自然风光摄影展', '自然风光秀丽', 3, '风光村', '捕捉自然风光的瞬间，记录乡村美景。', 'scenery1.jpg,scenery2.jpg', '2024-12-03 16:36:42', 0, '2024-12-03 16:36:42');
-INSERT INTO `town_advocacy_info` VALUES (4, '农家体验活动', '农家院', 4, '农家庄', '亲身体验农家生活，享受田园乐趣。', 'farm1.jpg,farm2.jpg', '2024-12-03 16:36:42', 0, '2024-12-03 16:36:42');
-INSERT INTO `town_advocacy_info` VALUES (5, '传统民俗节', '民俗活动', 5, '民俗村', '参与传统民俗活动，感受乡村文化。', 'festival1.jpg,festival2.jpg', '2024-12-03 16:36:42', 0, '2024-12-03 16:36:42');
-INSERT INTO `town_advocacy_info` VALUES (6, '乡村土特产展销', '土特产', 6, '特产村', '展示乡村土特产，推广地方特色产品。', 'specialty1.jpg,specialty2.jpg', '2024-12-03 16:38:42', 0, '2024-12-03 16:38:42');
+INSERT INTO `town_advocacy_info` VALUES (1, '乡村美食节', '特色小吃', 'Zhiend', '美食村', '品尝乡村特色小吃，享受传统美食文化。', 'food1.jpg,food2.jpg', '2024-12-03 17:02:01', 0, '2024-12-03 17:02:01');
+INSERT INTO `town_advocacy_info` VALUES (2, '古韵之旅', '古建筑', 'You', '古韵镇', '探索古镇历史，体验古建筑的魅力。', 'building1.jpg,building2.jpg', '2024-12-03 17:02:01', 0, '2024-12-03 17:02:01');
+INSERT INTO `town_advocacy_info` VALUES (3, '自然风光摄影展', '自然风光秀丽', 'Zhiend', '风光村', '捕捉自然风光的瞬间，记录乡村美景。', 'scenery1.jpg,scenery2.jpg', '2024-12-03 17:02:01', 0, '2024-12-03 17:02:01');
+INSERT INTO `town_advocacy_info` VALUES (4, '农家体验活动', '农家院', 'You', '农家庄', '亲身体验农家生活，享受田园乐趣。', 'farm1.jpg,farm2.jpg', '2024-12-03 17:02:01', 0, '2024-12-03 17:02:01');
+INSERT INTO `town_advocacy_info` VALUES (5, '传统民俗节', '民俗活动', 'Zhiend', '民俗村', '参与传统民俗活动，感受乡村文化。', 'festival1.jpg,festival2.jpg', '2024-12-03 17:02:01', 0, '2024-12-03 17:02:01');
+INSERT INTO `town_advocacy_info` VALUES (6, '乡村土特产展销', '土特产', 'You', '特产村', '展示乡村土特产，推广地方特色产品。', 'specialty1.jpg,specialty2.jpg', '2024-12-03 17:02:01', 0, '2024-12-03 17:02:01');
+INSERT INTO `town_advocacy_info` VALUES (7, '秋收庆典', '农家院', 'Zhiend', '丰收镇', '庆祝丰收，体验农耕文化。', 'harvest1.jpg,harvest2.jpg', '2024-12-03 17:02:01', 0, '2024-12-03 17:02:01');
+INSERT INTO `town_advocacy_info` VALUES (8, '历史文化讲座', '古建筑', 'You', '历史城', '深入了解乡村历史文化，增长知识。', 'history1.jpg,history2.jpg', '2024-12-03 17:02:01', 0, '2024-12-03 17:02:01');
+INSERT INTO `town_advocacy_info` VALUES (9, '乡村音乐节', '民俗活动', 'Zhiend', '音乐村', '享受乡村音乐，放松身心。', 'music1.jpg,music2.jpg', '2024-12-03 17:02:01', 0, '2024-12-03 17:02:01');
+INSERT INTO `town_advocacy_info` VALUES (10, '自然探索之旅', '自然风光秀丽', 'You', '探险谷', '探索自然奥秘，挑战自我。', 'explore1.jpg,explore2.jpg', '2024-12-03 17:02:01', 0, '2024-12-03 17:02:01');
 
 -- ----------------------------
 -- Table structure for town_info
@@ -183,7 +187,7 @@ CREATE TABLE `town_info`  (
 DROP TABLE IF EXISTS `town_support`;
 CREATE TABLE `town_support`  (
   `sid` int NOT NULL AUTO_INCREMENT COMMENT '好乡镇宣传助力id',
-  `suser_id` int NULL DEFAULT NULL COMMENT '助力用户id',
+  `suser_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '助力用户名',
   `pid` int NULL DEFAULT NULL COMMENT '对应的好乡镇宣传id',
   `stitle` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '助力标题',
   `sdesc` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '助力描述',
@@ -192,7 +196,7 @@ CREATE TABLE `town_support`  (
   `update_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '修改日期',
   `sfile_list` varchar(400) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '上传的介绍图片等文件名称列表',
   PRIMARY KEY (`sid`) USING BTREE,
-  INDEX `bid2`(`suser_id` ASC) USING BTREE
+  INDEX `bid2`(`suser_name` ASC) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '好乡镇宣传助力信息表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
