@@ -17,6 +17,11 @@ import org.springframework.web.multipart.MultipartFile;
 @ToString
 public class TownAdvocacyInfoDto {
     /**
+     * 主键
+     */
+    @ApiModelProperty("主键")
+    private Integer pid;
+    /**
      * 好乡镇宣传标题
      */
     @ApiModelProperty("宣传标题")

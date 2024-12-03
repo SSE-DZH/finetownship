@@ -21,4 +21,8 @@ public interface ITownAdvocacyInfoService extends IService<TownAdvocacyInfo> {
     PageResult<TownAdvocacyInfo> queryPage(TownAdvocacyInfoQuery query);
 
     void add(TownAdvocacyInfoDto townAdvocacyInfoDto) throws IOException;
+
+    void update(TownAdvocacyInfoDto townAdvocacyInfoDto) throws IOException;
+
+    void delete(Integer id) throws IOException;
 }
