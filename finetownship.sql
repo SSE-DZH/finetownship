@@ -11,7 +11,7 @@
  Target Server Version : 80036 (8.0.36)
  File Encoding         : 65001
 
- Date: 03/12/2024 15:10:01
+ Date: 03/12/2024 16:41:07
 */
 
 SET NAMES utf8mb4;
@@ -22,9 +22,9 @@ SET FOREIGN_KEY_CHECKS = 0;
 -- ----------------------------
 DROP TABLE IF EXISTS `accept_info`;
 CREATE TABLE `accept_info`  (
-  `id` int NOT NULL AUTO_INCREMENT COMMENT '助力成功记录标识',
-  `pid` int NULL DEFAULT NULL COMMENT '好乡镇宣传标识',
-  `sid` int NULL DEFAULT NULL COMMENT '好乡镇助力标识',
+  `id` int NOT NULL AUTO_INCREMENT COMMENT '助力成功记录id',
+  `pid` int NULL DEFAULT NULL COMMENT '好乡镇宣传id',
+  `sid` int NULL DEFAULT NULL COMMENT '好乡镇助力id',
   `create_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '备注',
   PRIMARY KEY (`id`) USING BTREE,
@@ -41,8 +41,8 @@ CREATE TABLE `accept_info`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `advocacy_type`;
 CREATE TABLE `advocacy_type`  (
-  `id` int NOT NULL AUTO_INCREMENT COMMENT '好乡镇宣传类型标识',
-  `type_name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '好乡镇宣传类型名称',
+  `id` int NOT NULL AUTO_INCREMENT COMMENT '好乡镇宣传类型id',
+  `type` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '好乡镇宣传类型',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '好乡镇宣传类型表' ROW_FORMAT = Dynamic;
 
@@ -100,11 +100,11 @@ INSERT INTO `buser` VALUES (2, 'You', '身份证', '511528191106127983', '刘双
 -- ----------------------------
 DROP TABLE IF EXISTS `city_info`;
 CREATE TABLE `city_info`  (
-  `id` int NOT NULL COMMENT '城市标识',
+  `city_id` int NOT NULL COMMENT '城市id',
   `city_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '城市名称',
-  `province_id` int NULL DEFAULT NULL COMMENT '省标识',
+  `province_id` int NULL DEFAULT NULL COMMENT '省id',
   `province_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '省名称',
-  PRIMARY KEY (`id`) USING BTREE
+  PRIMARY KEY (`city_id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '城市信息表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
@@ -118,8 +118,8 @@ DROP TABLE IF EXISTS `report`;
 CREATE TABLE `report`  (
   `id` int NOT NULL AUTO_INCREMENT COMMENT '报告id',
   `month_id` varchar(6) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '统计月份',
-  `ptype_id` int NULL DEFAULT NULL COMMENT '好乡镇宣传类型标识',
-  `town_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '好乡镇标识',
+  `ptype_id` int NULL DEFAULT NULL COMMENT '好乡镇宣传类型id',
+  `town_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '好乡镇id',
   `puser_num` int NULL DEFAULT NULL COMMENT '月累计宣传用户数',
   `suser_num` int NULL DEFAULT NULL COMMENT '月累计助力用户数',
   PRIMARY KEY (`id`) USING BTREE
@@ -134,37 +134,43 @@ CREATE TABLE `report`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `town_advocacy_info`;
 CREATE TABLE `town_advocacy_info`  (
-  `id` int NOT NULL AUTO_INCREMENT COMMENT '好乡镇宣传标识',
+  `pid` int NOT NULL AUTO_INCREMENT COMMENT '好乡镇宣传id',
   `ptitle` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '好乡镇宣传标题',
-  `ptype_id` int NULL DEFAULT NULL COMMENT '好乡镇宣传类型标识',
-  `puser_id` int NULL DEFAULT NULL COMMENT '发布该好乡镇宣传的用户标识',
-  `town_id` int NULL DEFAULT NULL COMMENT '被宣传的好乡镇标识',
+  `type` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '好乡镇宣传类型',
+  `puser_id` int NULL DEFAULT NULL COMMENT '发布该好乡镇宣传的用户id',
+  `town_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '被宣传的好乡镇名称',
   `pdesc` varchar(300) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '好乡镇宣传描述',
   `pfile_list` varchar(300) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '上传的图片等资源文件名称列表',
   `pbegin_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '开始宣传日期，默认提交日期',
   `pstate` int NULL DEFAULT NULL COMMENT '状态，0：已发布；-1：已取消',
   `pupdate_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '修改日期',
-  PRIMARY KEY (`id`) USING BTREE,
+  PRIMARY KEY (`pid`) USING BTREE,
   INDEX `f1`(`puser_id` ASC) USING BTREE,
-  INDEX `f2`(`ptype_id` ASC) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '好乡镇宣传信息表' ROW_FORMAT = Dynamic;
+  INDEX `f2`(`type` ASC) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '好乡镇宣传信息表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of town_advocacy_info
 -- ----------------------------
+INSERT INTO `town_advocacy_info` VALUES (1, '乡村美食节', '特色小吃', 1, '美食村', '品尝乡村特色小吃，享受传统美食文化。', 'food1.jpg,food2.jpg', '2024-12-03 16:36:42', 0, '2024-12-03 16:36:42');
+INSERT INTO `town_advocacy_info` VALUES (2, '古韵之旅', '古建筑', 2, '古韵镇', '探索古镇历史，体验古建筑的魅力。', 'building1.jpg,building2.jpg', '2024-12-03 16:36:42', 0, '2024-12-03 16:36:42');
+INSERT INTO `town_advocacy_info` VALUES (3, '自然风光摄影展', '自然风光秀丽', 3, '风光村', '捕捉自然风光的瞬间，记录乡村美景。', 'scenery1.jpg,scenery2.jpg', '2024-12-03 16:36:42', 0, '2024-12-03 16:36:42');
+INSERT INTO `town_advocacy_info` VALUES (4, '农家体验活动', '农家院', 4, '农家庄', '亲身体验农家生活，享受田园乐趣。', 'farm1.jpg,farm2.jpg', '2024-12-03 16:36:42', 0, '2024-12-03 16:36:42');
+INSERT INTO `town_advocacy_info` VALUES (5, '传统民俗节', '民俗活动', 5, '民俗村', '参与传统民俗活动，感受乡村文化。', 'festival1.jpg,festival2.jpg', '2024-12-03 16:36:42', 0, '2024-12-03 16:36:42');
+INSERT INTO `town_advocacy_info` VALUES (6, '乡村土特产展销', '土特产', 6, '特产村', '展示乡村土特产，推广地方特色产品。', 'specialty1.jpg,specialty2.jpg', '2024-12-03 16:38:42', 0, '2024-12-03 16:38:42');
 
 -- ----------------------------
 -- Table structure for town_info
 -- ----------------------------
 DROP TABLE IF EXISTS `town_info`;
 CREATE TABLE `town_info`  (
-  `id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '乡镇标识',
+  `town_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '乡镇id',
   `town_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '乡镇名称',
-  `city_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '城市标识',
+  `city_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '城市id',
   `city_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '城市名称',
-  `province_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '省标识',
+  `province_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '省id',
   `province_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '省名称',
-  PRIMARY KEY (`id`) USING BTREE
+  PRIMARY KEY (`town_id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '乡镇信息表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
@@ -176,16 +182,16 @@ CREATE TABLE `town_info`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `town_support`;
 CREATE TABLE `town_support`  (
-  `id` int NOT NULL AUTO_INCREMENT COMMENT '好乡镇宣传助力标识',
-  `suser_id` int NULL DEFAULT NULL COMMENT '助力用户标识',
-  `pid` int NULL DEFAULT NULL COMMENT '对应的好乡镇宣传标识',
+  `sid` int NOT NULL AUTO_INCREMENT COMMENT '好乡镇宣传助力id',
+  `suser_id` int NULL DEFAULT NULL COMMENT '助力用户id',
+  `pid` int NULL DEFAULT NULL COMMENT '对应的好乡镇宣传id',
   `stitle` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '助力标题',
   `sdesc` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '助力描述',
   `support_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建日期',
   `support_state` tinyint(1) NULL DEFAULT NULL COMMENT '状态，0：待接受；1：已接受；2：拒绝；3：取消',
   `update_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '修改日期',
   `sfile_list` varchar(400) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '上传的介绍图片等文件名称列表',
-  PRIMARY KEY (`id`) USING BTREE,
+  PRIMARY KEY (`sid`) USING BTREE,
   INDEX `bid2`(`suser_id` ASC) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '好乡镇宣传助力信息表' ROW_FORMAT = Dynamic;
 

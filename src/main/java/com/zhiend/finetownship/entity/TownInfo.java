@@ -19,10 +19,10 @@ public class TownInfo implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**
-     * 乡镇标识
+     * 乡镇id
      */
-    @TableId(value = "id", type = IdType.AUTO)
-    private String id;
+    @TableId(value = "town_id", type = IdType.AUTO)
+    private String townId;
 
     /**
      * 乡镇名称
@@ -30,7 +30,7 @@ public class TownInfo implements Serializable {
     private String townName;
 
     /**
-     * 城市标识
+     * 城市id
      */
     private String cityId;
 
@@ -40,7 +40,7 @@ public class TownInfo implements Serializable {
     private String cityName;
 
     /**
-     * 省标识
+     * 省id
      */
     private String provinceId;
 
@@ -49,12 +49,12 @@ public class TownInfo implements Serializable {
      */
     private String provinceName;
 
-    public String getId() {
-        return id;
+    public String getTownId() {
+        return townId;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setTownId(String townId) {
+        this.townId = townId;
     }
     public String getTownName() {
         return townName;
@@ -95,7 +95,7 @@ public class TownInfo implements Serializable {
     @Override
     public String toString() {
         return "TownInfo{" +
-            "id=" + id +
+            "townId=" + townId +
             ", townName=" + townName +
             ", cityId=" + cityId +
             ", cityName=" + cityName +

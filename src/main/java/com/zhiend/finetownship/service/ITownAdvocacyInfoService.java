@@ -2,6 +2,8 @@ package com.zhiend.finetownship.service;
 
 import com.zhiend.finetownship.entity.TownAdvocacyInfo;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.zhiend.finetownship.query.PageResult;
+import com.zhiend.finetownship.query.TownAdvocacyInfoQuery;
 
 /**
  * <p>
@@ -13,4 +15,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface ITownAdvocacyInfoService extends IService<TownAdvocacyInfo> {
 
+    PageResult<TownAdvocacyInfo> queryPage(TownAdvocacyInfoQuery query);
 }

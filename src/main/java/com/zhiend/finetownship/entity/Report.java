@@ -30,12 +30,12 @@ public class Report implements Serializable {
     private String monthId;
 
     /**
-     * 好乡镇宣传类型标识
+     * 好乡镇宣传类型id
      */
     private Integer ptypeId;
 
     /**
-     * 好乡镇标识
+     * 好乡镇id
      */
     private String townId;
 

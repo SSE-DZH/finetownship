@@ -1,7 +1,10 @@
 package com.zhiend.finetownship.mapper;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.zhiend.finetownship.entity.TownAdvocacyInfo;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.zhiend.finetownship.query.TownAdvocacyInfoQuery;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * <p>
@@ -13,4 +16,5 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  */
 public interface TownAdvocacyInfoMapper extends BaseMapper<TownAdvocacyInfo> {
 
+    IPage<TownAdvocacyInfo> queryPage(@Param("page") IPage<TownAdvocacyInfo> page, @Param("query") TownAdvocacyInfoQuery query);
 }

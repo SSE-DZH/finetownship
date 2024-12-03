@@ -20,10 +20,10 @@ public class TownAdvocacyInfo implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**
-     * 好乡镇宣传标识
+     * 好乡镇宣传id
      */
-    @TableId(value = "id", type = IdType.AUTO)
-    private Integer id;
+    @TableId(value = "pid", type = IdType.AUTO)
+    private Integer pid;
 
     /**
      * 好乡镇宣传标题
@@ -31,19 +31,19 @@ public class TownAdvocacyInfo implements Serializable {
     private String ptitle;
 
     /**
-     * 好乡镇宣传类型标识
+     * 好乡镇宣传类型
      */
-    private Integer ptypeId;
+    private String type;
 
     /**
-     * 发布该好乡镇宣传的用户标识
+     * 发布该好乡镇宣传的用户id
      */
     private Integer puserId;
 
     /**
-     * 被宣传的好乡镇标识
+     * 被宣传的好乡镇名称
      */
-    private Integer townId;
+    private String townName;
 
     /**
      * 好乡镇宣传描述
@@ -70,12 +70,12 @@ public class TownAdvocacyInfo implements Serializable {
      */
     private LocalDateTime pupdateDate;
 
-    public Integer getId() {
-        return id;
+    public Integer getPid() {
+        return pid;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setPid(Integer pid) {
+        this.pid = pid;
     }
     public String getPtitle() {
         return ptitle;
@@ -84,12 +84,12 @@ public class TownAdvocacyInfo implements Serializable {
     public void setPtitle(String ptitle) {
         this.ptitle = ptitle;
     }
-    public Integer getPtypeId() {
-        return ptypeId;
+    public String getType() {
+        return type;
     }
 
-    public void setPtypeId(Integer ptypeId) {
-        this.ptypeId = ptypeId;
+    public void setType(String type) {
+        this.type = type;
     }
     public Integer getPuserId() {
         return puserId;
@@ -98,12 +98,12 @@ public class TownAdvocacyInfo implements Serializable {
     public void setPuserId(Integer puserId) {
         this.puserId = puserId;
     }
-    public Integer getTownId() {
-        return townId;
+    public String getTownName() {
+        return townName;
     }
 
-    public void setTownId(Integer townId) {
-        this.townId = townId;
+    public void setTownName(String townName) {
+        this.townName = townName;
     }
     public String getPdesc() {
         return pdesc;
@@ -144,11 +144,11 @@ public class TownAdvocacyInfo implements Serializable {
     @Override
     public String toString() {
         return "TownAdvocacyInfo{" +
-            "id=" + id +
+            "pid=" + pid +
             ", ptitle=" + ptitle +
-            ", ptypeId=" + ptypeId +
+            ", type=" + type +
             ", puserId=" + puserId +
-            ", townId=" + townId +
+            ", townName=" + townName +
             ", pdesc=" + pdesc +
             ", pfileList=" + pfileList +
             ", pbeginDate=" + pbeginDate +

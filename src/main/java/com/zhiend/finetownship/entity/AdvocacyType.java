@@ -19,15 +19,15 @@ public class AdvocacyType implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**
-     * 好乡镇宣传类型标识
+     * 好乡镇宣传类型id
      */
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
     /**
-     * 好乡镇宣传类型名称
+     * 好乡镇宣传类型
      */
-    private String typeName;
+    private String type;
 
     public Integer getId() {
         return id;
@@ -36,19 +36,19 @@ public class AdvocacyType implements Serializable {
     public void setId(Integer id) {
         this.id = id;
     }
-    public String getTypeName() {
-        return typeName;
+    public String getType() {
+        return type;
     }
 
-    public void setTypeName(String typeName) {
-        this.typeName = typeName;
+    public void setType(String type) {
+        this.type = type;
     }
 
     @Override
     public String toString() {
         return "AdvocacyType{" +
             "id=" + id +
-            ", typeName=" + typeName +
+            ", type=" + type +
         "}";
     }
 }

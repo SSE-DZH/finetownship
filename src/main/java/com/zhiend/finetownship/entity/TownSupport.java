@@ -20,18 +20,18 @@ public class TownSupport implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**
-     * 好乡镇宣传助力标识
+     * 好乡镇宣传助力id
      */
-    @TableId(value = "id", type = IdType.AUTO)
-    private Integer id;
+    @TableId(value = "sid", type = IdType.AUTO)
+    private Integer sid;
 
     /**
-     * 助力用户标识
+     * 助力用户id
      */
     private Integer suserId;
 
     /**
-     * 对应的好乡镇宣传标识
+     * 对应的好乡镇宣传id
      */
     private Integer pid;
 
@@ -65,12 +65,12 @@ public class TownSupport implements Serializable {
      */
     private String sfileList;
 
-    public Integer getId() {
-        return id;
+    public Integer getSid() {
+        return sid;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setSid(Integer sid) {
+        this.sid = sid;
     }
     public Integer getSuserId() {
         return suserId;
@@ -132,7 +132,7 @@ public class TownSupport implements Serializable {
     @Override
     public String toString() {
         return "TownSupport{" +
-            "id=" + id +
+            "sid=" + sid +
             ", suserId=" + suserId +
             ", pid=" + pid +
             ", stitle=" + stitle +

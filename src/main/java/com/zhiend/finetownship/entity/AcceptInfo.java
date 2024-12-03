@@ -20,18 +20,18 @@ public class AcceptInfo implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**
-     * 助力成功记录标识
+     * 助力成功记录id
      */
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
     /**
-     * 好乡镇宣传标识
+     * 好乡镇宣传id
      */
     private Integer pid;
 
     /**
-     * 好乡镇助力标识
+     * 好乡镇助力id
      */
     private Integer sid;
 

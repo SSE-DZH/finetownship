@@ -2,4 +2,20 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zhiend.finetownship.mapper.TownAdvocacyInfoMapper">
 
+    <select id="queryPage" resultType="com.zhiend.finetownship.entity.TownAdvocacyInfo">
+        select *
+        from town_advocacy_info
+        <where>
+            <if test="query.ptitle != null and query.ptitle.trim() != ''">
+                AND ptitle like concat('%',#{query.ptitle},'%')
+            </if>
+            <if test="query.type != null and query.type.trim() != ''">
+                AND type like concat('%',#{query.type},'%')
+            </if>
+            <if test="query.townName != null and query.townName.trim() != ''">
+                AND town_name like concat('%',#{query.townName},'%')
+            </if>
+        </where>
+        order by pupdate_date desc
+    </select>
 </mapper>
