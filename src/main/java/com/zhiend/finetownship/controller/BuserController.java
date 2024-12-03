@@ -24,7 +24,7 @@ import javax.annotation.Resource;
  */
 @RestController
 @RequestMapping("/buser")
-@Api("业务用户控制器")
+@Api(tags = "业务用户控制器")
 public class BuserController {
     @Resource
     private IBuserService buserService;

@@ -22,8 +22,8 @@ public class TownAdvocacyInfo implements Serializable {
     /**
      * 好乡镇宣传标识
      */
-    @TableId(value = "pid", type = IdType.AUTO)
-    private Integer pid;
+    @TableId(value = "id", type = IdType.AUTO)
+    private Integer id;
 
     /**
      * 好乡镇宣传标题
@@ -70,12 +70,12 @@ public class TownAdvocacyInfo implements Serializable {
      */
     private LocalDateTime pupdateDate;
 
-    public Integer getPid() {
-        return pid;
+    public Integer getId() {
+        return id;
     }
 
-    public void setPid(Integer pid) {
-        this.pid = pid;
+    public void setId(Integer id) {
+        this.id = id;
     }
     public String getPtitle() {
         return ptitle;
@@ -144,7 +144,7 @@ public class TownAdvocacyInfo implements Serializable {
     @Override
     public String toString() {
         return "TownAdvocacyInfo{" +
-            "pid=" + pid +
+            "id=" + id +
             ", ptitle=" + ptitle +
             ", ptypeId=" + ptypeId +
             ", puserId=" + puserId +

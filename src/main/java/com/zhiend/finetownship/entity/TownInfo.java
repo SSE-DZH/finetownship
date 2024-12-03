@@ -21,8 +21,8 @@ public class TownInfo implements Serializable {
     /**
      * 乡镇标识
      */
-    @TableId(value = "town_id", type = IdType.AUTO)
-    private String townId;
+    @TableId(value = "id", type = IdType.AUTO)
+    private String id;
 
     /**
      * 乡镇名称
@@ -49,12 +49,12 @@ public class TownInfo implements Serializable {
      */
     private String provinceName;
 
-    public String getTownId() {
-        return townId;
+    public String getId() {
+        return id;
     }
 
-    public void setTownId(String townId) {
-        this.townId = townId;
+    public void setId(String id) {
+        this.id = id;
     }
     public String getTownName() {
         return townName;
@@ -95,7 +95,7 @@ public class TownInfo implements Serializable {
     @Override
     public String toString() {
         return "TownInfo{" +
-            "townId=" + townId +
+            "id=" + id +
             ", townName=" + townName +
             ", cityId=" + cityId +
             ", cityName=" + cityName +
