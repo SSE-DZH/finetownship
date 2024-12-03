@@ -50,7 +50,7 @@ public class TownAdvocacyInfoController {
             townAdvocacyInfoService.add(townAdvocacyInfoDto);
             return Result.success(MessageConstant.OPERATION_SUCCESS);
         } catch (IOException e) {
-            return Result.error(MessageConstant.OPERATION_FAILED);
+            return Result.error(MessageConstant.UPLOAD_FAILED);
         }
 
     }

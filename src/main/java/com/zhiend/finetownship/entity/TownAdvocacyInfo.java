@@ -51,7 +51,7 @@ public class TownAdvocacyInfo implements Serializable {
     private String pdesc;
 
     /**
-     * 上传的图片等资源文件名称列表
+     * 上传的图片等资源文件名称列表，用逗号隔开
      */
     private String pfileList;
 

@@ -2,10 +2,8 @@ package com.zhiend.finetownship.utils;
 
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class FileUploadUtil {
@@ -16,7 +14,7 @@ public class FileUploadUtil {
         StringBuilder fileNames = new StringBuilder();
         for (MultipartFile file : files) {
             if (file.isEmpty()) continue;
-            String fileName = RandomName.getRandomName(file.getOriginalFilename());
+            String fileName = RandomUtils.getRandomFileName(file.getOriginalFilename());
             Files.copy(file.getInputStream(), Paths.get(FILE_PATH + fileName));
             fileNames.append(fileName).append(",");
         }

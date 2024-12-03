@@ -2,9 +2,9 @@ package com.zhiend.finetownship.utils;
 
 import java.util.UUID;
 
-public class RandomName {
+public class RandomUtils {
 
-    public static String getRandomName(String fileName){
+    public static String getRandomFileName(String fileName){
         int index=fileName.lastIndexOf(".");
         String houzhui=fileName.substring(index);//获取后缀名
         String uuidFileName=UUID.randomUUID().toString().replace("-","")+houzhui;
@@ -12,6 +12,6 @@ public class RandomName {
     }
 
     public static void main(String[] args) {
-        System.out.println(getRandomName("aaa.jpg"));
+        System.out.println(getRandomFileName("aaa.jpg"));
     }
 }
