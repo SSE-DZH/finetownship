@@ -18,4 +18,14 @@
         </where>
         order by pupdate_date desc
     </select>
+    <select id="queryPageByName" resultType="com.zhiend.finetownship.entity.TownAdvocacyInfo">
+        select *
+        from town_advocacy_info
+        <where>
+            <if test="puserName != null and puserName.trim() != ''">
+                AND puser_name = #{puserName}
+            </if>
+        </where>
+        order by pupdate_date desc
+    </select>
 </mapper>

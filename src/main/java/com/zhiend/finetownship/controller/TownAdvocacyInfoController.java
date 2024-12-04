@@ -6,6 +6,7 @@ import com.zhiend.finetownship.dto.TownAdvocacyInfoDto;
 import com.zhiend.finetownship.entity.TownAdvocacyInfo;
 import com.zhiend.finetownship.exception.GloabalException;
 import com.zhiend.finetownship.query.PageResult;
+import com.zhiend.finetownship.query.Query;
 import com.zhiend.finetownship.query.TownAdvocacyInfoQuery;
 import com.zhiend.finetownship.result.Result;
 import com.zhiend.finetownship.service.ITownAdvocacyInfoService;
@@ -35,7 +36,7 @@ public class TownAdvocacyInfoController {
     private ITownAdvocacyInfoService townAdvocacyInfoService;
 
     @PostMapping("/query")
-    @ApiOperation("宣传信息分页查询")
+    @ApiOperation("所有宣传信息分页查询")
     public Result<PageResult<TownAdvocacyInfo>> querypage(TownAdvocacyInfoQuery query) {
         return Result.success(townAdvocacyInfoService.queryPage(query));
     }
@@ -66,5 +67,12 @@ public class TownAdvocacyInfoController {
             throw new GloabalException(MessageConstant.OPERATION_FAILED);
         }
         return Result.success(MessageConstant.OPERATION_SUCCESS);
+    }
+
+    // 查看用户自己发布的宣传信息
+    @PostMapping("/queryByName")
+    @ApiOperation("用户自己的宣传信息查询")
+    public Result<PageResult<TownAdvocacyInfo>> queryPageByName(@RequestParam("puserName") String puserName, Query query) {
+        return Result.success(townAdvocacyInfoService.queryPageByName(puserName, query));
     }
 }

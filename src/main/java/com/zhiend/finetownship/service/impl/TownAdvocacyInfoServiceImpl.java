@@ -11,6 +11,7 @@ import com.zhiend.finetownship.exception.GloabalException;
 import com.zhiend.finetownship.mapper.AcceptInfoMapper;
 import com.zhiend.finetownship.mapper.TownAdvocacyInfoMapper;
 import com.zhiend.finetownship.query.PageResult;
+import com.zhiend.finetownship.query.Query;
 import com.zhiend.finetownship.query.TownAdvocacyInfoQuery;
 import com.zhiend.finetownship.service.ITownAdvocacyInfoService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -43,13 +44,7 @@ public class TownAdvocacyInfoServiceImpl extends ServiceImpl<TownAdvocacyInfoMap
         IPage<TownAdvocacyInfo> iPage = townAdvocacyInfoMapper.queryPage(page, query);
 
         // 将查询结果封装成PageResult对象并返回
-        PageResult<TownAdvocacyInfo> pageResult = new PageResult<>();
-        pageResult.setTotalPage(iPage.getTotal());
-        pageResult.setTotalNum(iPage.getTotal());
-        pageResult.setCurrentPage(iPage.getCurrent());
-        pageResult.setContentList(iPage.getRecords());
-
-        return pageResult;
+        return buildPageResult(iPage);
     }
 
     @Override
@@ -92,5 +87,26 @@ public class TownAdvocacyInfoServiceImpl extends ServiceImpl<TownAdvocacyInfoMap
         FileUtil.deleteFiles(townAdvocacyInfo.getPfileList());
         townAdvocacyInfoMapper.deleteById(pid);
     }
+
+    @Override
+    public PageResult<TownAdvocacyInfo> queryPageByName(String puserName, Query query) {
+        // 创建分页对象
+        IPage<TownAdvocacyInfo> page = new Page<>(query.getPageNo(), query.getPageSize());
+        // 执行分页查询
+        IPage<TownAdvocacyInfo> iPage = townAdvocacyInfoMapper.queryPageByName(puserName, page, query);
+
+        // 将查询结果封装成PageResult对象并返回
+        return buildPageResult(iPage);
+    }
+
+    private PageResult<TownAdvocacyInfo> buildPageResult(IPage<TownAdvocacyInfo> iPage) {
+        PageResult<TownAdvocacyInfo> pageResult = new PageResult<>();
+        pageResult.setTotalPage(iPage.getPages());
+        pageResult.setTotalNum(iPage.getTotal());
+        pageResult.setCurrentPage(iPage.getCurrent());
+        pageResult.setContentList(iPage.getRecords());
+        return pageResult;
+    }
+
 
 }

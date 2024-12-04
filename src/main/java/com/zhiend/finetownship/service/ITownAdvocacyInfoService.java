@@ -4,6 +4,7 @@ import com.zhiend.finetownship.dto.TownAdvocacyInfoDto;
 import com.zhiend.finetownship.entity.TownAdvocacyInfo;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.zhiend.finetownship.query.PageResult;
+import com.zhiend.finetownship.query.Query;
 import com.zhiend.finetownship.query.TownAdvocacyInfoQuery;
 
 import java.io.IOException;
@@ -25,4 +26,7 @@ public interface ITownAdvocacyInfoService extends IService<TownAdvocacyInfo> {
     void update(TownAdvocacyInfoDto townAdvocacyInfoDto) throws IOException;
 
     void delete(Integer id) throws IOException;
+
+
+    PageResult<TownAdvocacyInfo> queryPageByName(String puserName, Query query);
 }
