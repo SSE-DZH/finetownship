@@ -40,7 +40,7 @@ public class BuserServiceImpl extends ServiceImpl<BuserMapper, Buser> implements
             throw new GloabalException(MessageConstant.ACCOUNT_EXISTS);
         }
         Buser buser = new Buser();
-        BeanUtil.copyProperties(registerDto, buser);
+        BeanUtil.copyProperties(registerDto, buser, true);
         buserMapper.insert(buser);
     }
 
@@ -61,7 +61,7 @@ public class BuserServiceImpl extends ServiceImpl<BuserMapper, Buser> implements
             throw new GloabalException(MessageConstant.ACCOUNT_NOT_FOUND);
         }
         Buser buser = buserMapper.selectById(updateDto.getId());
-        BeanUtil.copyProperties(updateDto, buser);
+        BeanUtil.copyProperties(updateDto, buser, true);
         buserMapper.updateById(buser);
     }
 

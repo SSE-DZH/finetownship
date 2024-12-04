@@ -3,6 +3,9 @@ package com.zhiend.finetownship.entity;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
 import java.time.LocalDateTime;
 import java.io.Serializable;
 
@@ -15,6 +18,8 @@ import java.io.Serializable;
  * @since 2024-12-03
  */
 @TableName("town_support")
+@NoArgsConstructor
+@AllArgsConstructor
 public class TownSupport implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -53,7 +58,7 @@ public class TownSupport implements Serializable {
     /**
      * 状态，0：待接受；1：已接受；2：拒绝；3：取消
      */
-    private Boolean supportState;
+    private int supportState;
 
     /**
      * 修改日期
@@ -107,11 +112,11 @@ public class TownSupport implements Serializable {
     public void setSupportDate(LocalDateTime supportDate) {
         this.supportDate = supportDate;
     }
-    public Boolean getSupportState() {
+
+    public int getSupportState() {
         return supportState;
     }
-
-    public void setSupportState(Boolean supportState) {
+    public void setSupportState(int supportState) {
         this.supportState = supportState;
     }
     public LocalDateTime getUpdateDate() {

@@ -60,6 +60,6 @@ public class TownAdvocacyInfoDto {
     /**
      * 好乡镇宣传图片
      */
-    @ApiModelProperty("上传的文件")
+    @ApiModelProperty("上传的文件，每个不超过10MB，总共不超过100MB，需要前端检验")
     private MultipartFile[] files;
 }

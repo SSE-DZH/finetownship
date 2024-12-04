@@ -26,9 +26,9 @@ public class TownAdvocacyInfoQuery extends Query{
     private String ptitle;
 
     /**
-     * 好乡镇宣传类型标识
+     * 好乡镇宣传类型
      */
-    @ApiModelProperty("好乡镇宣传类型标识")
+    @ApiModelProperty("好乡镇宣传类型")
     private String type;
 
     /**

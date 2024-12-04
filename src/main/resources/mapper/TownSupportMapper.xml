@@ -2,4 +2,47 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zhiend.finetownship.mapper.TownSupportMapper">
 
+    <select id="queryPage" resultType="com.zhiend.finetownship.entity.TownSupport">
+        SELECT ts.*, tai.*
+        FROM town_support ts
+        JOIN town_advocacy_info tai ON ts.pid = tai.pid
+        <where>
+            <if test="query.ptitle != null and query.ptitle.trim() != ''">
+                AND tai.ptitle LIKE CONCAT('%', #{query.ptitle}, '%')
+            </if>
+            <if test="query.type != null and query.type.trim() != ''">
+                AND tai.type LIKE CONCAT('%', #{query.type}, '%')
+            </if>
+            <if test="query.townName != null and query.townName.trim() != ''">
+                AND tai.town_name LIKE CONCAT('%', #{query.townName}, '%')
+            </if>
+            <if test="query.cityName != null and query.cityName.trim() != ''">
+                AND tai.city_name LIKE CONCAT('%', #{query.cityName}, '%')
+            </if>
+            <if test="query.provinceName != null and query.provinceName.trim() != ''">
+                AND tai.province_name LIKE CONCAT('%', #{query.provinceName}, '%')
+            </if>
+            <if test="query.stitle != null and query.stitle.trim() != ''">
+                AND ts.stitle LIKE CONCAT('%', #{query.stitle}, '%')
+            </if>
+            <if test="query.sdesc != null and query.sdesc.trim() != ''">
+                AND ts.sdesc LIKE CONCAT('%', #{query.sdesc}, '%')
+            </if>
+        </where>
+        ORDER BY ts.update_date DESC
+    </select>
+    <select id="queryPageByName" resultType="com.zhiend.finetownship.entity.TownSupport">
+        select * from town_support
+        <where>
+            suser_name = #{suserName}
+        </where>
+        order by update_date desc
+    </select>
+    <select id="queryWaitHandle" resultType="com.zhiend.finetownship.entity.TownSupport">
+        SELECT ts.*
+        FROM town_support ts
+                 JOIN town_advocacy_info tai ON ts.pid = tai.pid
+        WHERE tai.puser_name = #{puserName}
+        order by ts.update_date desc
+    </select>
 </mapper>

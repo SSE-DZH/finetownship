@@ -51,7 +51,7 @@ public class TownAdvocacyInfoServiceImpl extends ServiceImpl<TownAdvocacyInfoMap
     public void add(TownAdvocacyInfoDto townAdvocacyInfoDto) throws IOException {
         String pfileList = FileUtil.uploadFile(townAdvocacyInfoDto.getFiles());
         TownAdvocacyInfo townAdvocacyInfo = new TownAdvocacyInfo();
-        BeanUtil.copyProperties(townAdvocacyInfoDto, townAdvocacyInfo);
+        BeanUtil.copyProperties(townAdvocacyInfoDto, townAdvocacyInfo, true);
         townAdvocacyInfo.setPstate(0);
         townAdvocacyInfo.setPfileList(pfileList);
         townAdvocacyInfoMapper.insert(townAdvocacyInfo);
@@ -59,9 +59,13 @@ public class TownAdvocacyInfoServiceImpl extends ServiceImpl<TownAdvocacyInfoMap
 
     @Override
     public void update(TownAdvocacyInfoDto townAdvocacyInfoDto) throws IOException{
+        // 检查是否已被助力
+        if (checkIsSupported(townAdvocacyInfoDto.getPid())) {
+            throw new GloabalException("已被助力，无法更改");
+        }
         // 根据pid查询实体
         TownAdvocacyInfo townAdvocacyInfo = townAdvocacyInfoMapper.selectById(townAdvocacyInfoDto.getPid());
-        BeanUtil.copyProperties(townAdvocacyInfoDto, townAdvocacyInfo);
+        BeanUtil.copyProperties(townAdvocacyInfoDto, townAdvocacyInfo, true);
         // 根据实体中的文件数组，删除对应的文件，同时对数据库进行更新
         if (townAdvocacyInfoDto.getFiles() != null) {
             String originPfileList = townAdvocacyInfo.getPfileList();
@@ -77,10 +81,8 @@ public class TownAdvocacyInfoServiceImpl extends ServiceImpl<TownAdvocacyInfoMap
     @Override
     public void delete(Integer pid) throws IOException {
         // 根据pid查询助力成功记录表中有没有该宣传信息，有则无法删除，没有则可以删除
-        QueryWrapper<AcceptInfo> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("pid", pid);
-        if (acceptInfoMapper.selectCount(queryWrapper) > 0) {
-            throw new GloabalException("该宣传信息有助力，无法删除");
+        if (checkIsSupported(pid)) {
+            throw new GloabalException("已被助力，无法删除");
         }
         // 根据pid查询实体
         TownAdvocacyInfo townAdvocacyInfo = townAdvocacyInfoMapper.selectById(pid);
@@ -106,6 +108,12 @@ public class TownAdvocacyInfoServiceImpl extends ServiceImpl<TownAdvocacyInfoMap
         pageResult.setCurrentPage(iPage.getCurrent());
         pageResult.setContentList(iPage.getRecords());
         return pageResult;
+    }
+
+    private boolean checkIsSupported (Integer pid) {
+        QueryWrapper<AcceptInfo> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("pid", pid);
+        return acceptInfoMapper.selectCount(queryWrapper) > 0;
     }
 
 
