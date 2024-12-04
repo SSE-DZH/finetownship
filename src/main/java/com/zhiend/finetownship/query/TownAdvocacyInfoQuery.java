@@ -36,4 +36,16 @@ public class TownAdvocacyInfoQuery extends Query{
      */
     @ApiModelProperty("被宣传的好乡镇名称")
     private String townName;
+
+    /**
+     * 城市名称
+     */
+    @ApiModelProperty("城市名称")
+    private String cityName;
+
+    /**
+     * 省名称
+     */
+    @ApiModelProperty("省名称")
+    private String provinceName;
 }

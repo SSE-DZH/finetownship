@@ -11,7 +11,7 @@ import java.io.Serializable;
  * </p>
  *
  * @author Zhiend
- * @since 2024-12-03
+ * @since 2024-12-04
  */
 @TableName("city_info")
 public class CityInfo implements Serializable {
@@ -28,11 +28,6 @@ public class CityInfo implements Serializable {
      * 城市名称
      */
     private String cityName;
-
-    /**
-     * 省id
-     */
-    private Integer provinceId;
 
     /**
      * 省名称
@@ -53,13 +48,6 @@ public class CityInfo implements Serializable {
     public void setCityName(String cityName) {
         this.cityName = cityName;
     }
-    public Integer getProvinceId() {
-        return provinceId;
-    }
-
-    public void setProvinceId(Integer provinceId) {
-        this.provinceId = provinceId;
-    }
     public String getProvinceName() {
         return provinceName;
     }
@@ -73,7 +61,6 @@ public class CityInfo implements Serializable {
         return "CityInfo{" +
             "cityId=" + cityId +
             ", cityName=" + cityName +
-            ", provinceId=" + provinceId +
             ", provinceName=" + provinceName +
         "}";
     }

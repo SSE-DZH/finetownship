@@ -2,6 +2,9 @@ package com.zhiend.finetownship.mapper;
 
 import com.zhiend.finetownship.entity.CityInfo;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Select;
+
+import java.util.List;
 
 /**
  * <p>
@@ -13,4 +16,9 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  */
 public interface CityInfoMapper extends BaseMapper<CityInfo> {
 
+    @Select("SELECT DISTINCT province_name FROM city_info")
+    List<String> queryAllProvs();
+
+    @Select("SELECT city_name FROM city_info WHERE province_name = #{provinceName}")
+    List<String> queryAllCitysByProvinceName(String provinceName);
 }

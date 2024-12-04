@@ -19,7 +19,7 @@ public class TownAdvocacyInfoDto {
     /**
      * 主键
      */
-    @ApiModelProperty("主键")
+    @ApiModelProperty("主键，更新专用字段")
     private Integer pid;
     /**
      * 好乡镇宣传标题
@@ -34,13 +34,24 @@ public class TownAdvocacyInfoDto {
     /**
      * 发布该好乡镇宣传的用户名
      */
-    @ApiModelProperty("宣传发布用户名")
+    @ApiModelProperty("宣传发布用户名，新增专用字段")
     private String puserName;
     /**
      * 被宣传的好乡镇名称
      */
-    @ApiModelProperty("被宣传的好乡镇名称")
+    @ApiModelProperty("被宣传的好乡镇名称，新增专用字段")
     private String townName;
+    /**
+     * 城市名称
+     */
+    @ApiModelProperty("城市名称，新增专用字段")
+    private String cityName;
+
+    /**
+     * 省名称
+     */
+    @ApiModelProperty("省名称，新增专用字段")
+    private String provinceName;
     /**
      * 好乡镇宣传描述
      */

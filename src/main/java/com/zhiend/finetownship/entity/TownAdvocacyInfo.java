@@ -12,7 +12,7 @@ import java.io.Serializable;
  * </p>
  *
  * @author Zhiend
- * @since 2024-12-03
+ * @since 2024-12-04
  */
 @TableName("town_advocacy_info")
 public class TownAdvocacyInfo implements Serializable {
@@ -46,12 +46,22 @@ public class TownAdvocacyInfo implements Serializable {
     private String townName;
 
     /**
+     * 城市名称
+     */
+    private String cityName;
+
+    /**
+     * 省名称
+     */
+    private String provinceName;
+
+    /**
      * 好乡镇宣传描述
      */
     private String pdesc;
 
     /**
-     * 上传的图片等资源文件名称列表，用逗号隔开
+     * 上传的图片等资源文件名称列表
      */
     private String pfileList;
 
@@ -105,6 +115,20 @@ public class TownAdvocacyInfo implements Serializable {
     public void setTownName(String townName) {
         this.townName = townName;
     }
+    public String getCityName() {
+        return cityName;
+    }
+
+    public void setCityName(String cityName) {
+        this.cityName = cityName;
+    }
+    public String getProvinceName() {
+        return provinceName;
+    }
+
+    public void setProvinceName(String provinceName) {
+        this.provinceName = provinceName;
+    }
     public String getPdesc() {
         return pdesc;
     }
@@ -149,6 +173,8 @@ public class TownAdvocacyInfo implements Serializable {
             ", type=" + type +
             ", puserName=" + puserName +
             ", townName=" + townName +
+            ", cityName=" + cityName +
+            ", provinceName=" + provinceName +
             ", pdesc=" + pdesc +
             ", pfileList=" + pfileList +
             ", pbeginDate=" + pbeginDate +

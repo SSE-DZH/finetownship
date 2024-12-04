@@ -15,6 +15,12 @@
             <if test="query.townName != null and query.townName.trim() != ''">
                 AND town_name like concat('%',#{query.townName},'%')
             </if>
+            <if test="query.cityName != null and query.cityName.trim() != ''">
+                AND city_name like concat('%',#{query.cityName},'%')
+            </if>
+            <if test="query.provinceName != null and query.provinceName.trim() != ''">
+                AND province_name like concat('%',#{query.provinceName},'%')
+            </if>
         </where>
         order by pupdate_date desc
     </select>
