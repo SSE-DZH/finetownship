@@ -101,4 +101,11 @@ public class TownSupportController {
     public Result<PageResult<TownSupport>> queryWaitHandle(@RequestParam String puserName, Query query) {
         return Result.success(townSupportService.queryWaitHandle(puserName, query));
     }
+
+    // 根据sid 查询宣传助力信息
+    @GetMapping("/queryBySid")
+    @ApiOperation("根据sid查询宣传助力信息")
+    public Result<TownSupport> queryBySid(@RequestParam("sid") Integer sid) {
+        return Result.success(townSupportService.getById(sid));
+    }
 }

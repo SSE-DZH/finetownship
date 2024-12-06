@@ -75,4 +75,11 @@ public class TownAdvocacyInfoController {
     public Result<PageResult<TownAdvocacyInfo>> queryPageByName(@RequestParam("puserName") String puserName, Query query) {
         return Result.success(townAdvocacyInfoService.queryPageByName(puserName, query));
     }
+
+    // 根据pid查询宣传信息
+    @GetMapping("/queryByPid")
+    @ApiOperation("根据pid查询宣传信息")
+    public Result<TownAdvocacyInfo> queryByPid(@RequestParam("pid") Integer pid) {
+        return Result.success(townAdvocacyInfoService.getById(pid));
+    }
 }
