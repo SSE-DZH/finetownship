@@ -1,6 +1,7 @@
 package com.zhiend.finetownship.service.impl;
 
 import cn.hutool.core.bean.BeanUtil;
+import cn.hutool.core.bean.copier.CopyOptions;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.zhiend.finetownship.constant.MessageConstant;
@@ -12,10 +13,12 @@ import com.zhiend.finetownship.exception.GloabalException;
 import com.zhiend.finetownship.mapper.BuserMapper;
 import com.zhiend.finetownship.service.IBuserService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.zhiend.finetownship.utils.BeanCopyUtil;
 import com.zhiend.finetownship.vo.BuserVo;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.time.LocalDateTime;
 
 /**
  * <p>
@@ -40,7 +43,7 @@ public class BuserServiceImpl extends ServiceImpl<BuserMapper, Buser> implements
             throw new GloabalException(MessageConstant.ACCOUNT_EXISTS);
         }
         Buser buser = new Buser();
-        BeanUtil.copyProperties(registerDto, buser, true);
+        BeanCopyUtil.copyProperties(registerDto, buser);
         buserMapper.insert(buser);
     }
 
@@ -51,7 +54,9 @@ public class BuserServiceImpl extends ServiceImpl<BuserMapper, Buser> implements
             throw new GloabalException(MessageConstant.ACCOUNT_NOT_FOUND);
         }
         Buser buser = buserMapper.selectById(id);
-        return BeanUtil.copyProperties(buser, BuserVo.class);
+        BuserVo buserVo = new BuserVo();
+        BeanCopyUtil.copyProperties(buser, buserVo);
+        return buserVo;
     }
 
     @Override
@@ -61,7 +66,11 @@ public class BuserServiceImpl extends ServiceImpl<BuserMapper, Buser> implements
             throw new GloabalException(MessageConstant.ACCOUNT_NOT_FOUND);
         }
         Buser buser = buserMapper.selectById(updateDto.getId());
-        BeanUtil.copyProperties(updateDto, buser, true);
+        CopyOptions copyOptions = CopyOptions.create()
+                .setIgnoreNullValue(true)
+                .setIgnoreError(true);
+        BeanUtil.copyProperties(updateDto, buser, copyOptions);
+        buser.setUpdateTime(LocalDateTime.now());
         buserMapper.updateById(buser);
     }
 

@@ -1,6 +1,5 @@
 package com.zhiend.finetownship.service.impl;
 
-import cn.hutool.core.bean.BeanUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -15,11 +14,13 @@ import com.zhiend.finetownship.query.Query;
 import com.zhiend.finetownship.query.TownSupportQuery;
 import com.zhiend.finetownship.service.ITownSupportService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.zhiend.finetownship.utils.BeanCopyUtil;
 import com.zhiend.finetownship.utils.FileUtil;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.io.IOException;
+import java.time.LocalDateTime;
 
 /**
  * <p>
@@ -38,7 +39,7 @@ public class TownSupportServiceImpl extends ServiceImpl<TownSupportMapper, TownS
     @Override
     public void add(TownSupportDto townSupportDto) throws IOException {
         TownSupport townSupport = new TownSupport();
-        BeanUtil.copyProperties(townSupportDto, townSupport, true);
+        BeanCopyUtil.copyProperties(townSupportDto, townSupport);
         townSupport.setSupportState(0);
         String sfileList = FileUtil.uploadFile(townSupportDto.getFiles());
         townSupport.setSfileList(sfileList);
@@ -52,7 +53,7 @@ public class TownSupportServiceImpl extends ServiceImpl<TownSupportMapper, TownS
         }
         // 根据sid 查询实体
         TownSupport townSupport = townSupportMapper.selectById(townSupportDto.getSid());
-        BeanUtil.copyProperties(townSupportDto, townSupport, true);
+        BeanCopyUtil.copyProperties(townSupportDto, townSupport);
         // 根据实体中的文件数组，删除对应的文件，同时对数据库进行更新
         if (townSupportDto.getFiles() != null) {
             String originSfileList = townSupport.getSfileList();
@@ -62,6 +63,7 @@ public class TownSupportServiceImpl extends ServiceImpl<TownSupportMapper, TownS
             String sfileList = FileUtil.uploadFile(townSupportDto.getFiles());
             townSupport.setSfileList(sfileList);
         }
+        townSupport.setUpdateDate(LocalDateTime.now());
         townSupportMapper.updateById(townSupport);
     }
 
